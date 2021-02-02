@@ -44,6 +44,7 @@ const basket_good = {
     'price': 0,
     'money_unit': "Rub",
 
+
     'init': function (id, name, unit, price) {
         this.id = id;
         this.name = name;
@@ -124,7 +125,7 @@ const good = {
     'big_img_url': "",
     'price': 0,
     'unit': "",
-    'discount': 0,
+    // 'discount': 0,
     'init': function (id, name, short_desc, long_desc, category_id, small_img_url, big_img_url, unit, price, discount) {
         this.id = id;
         this.name = name;
