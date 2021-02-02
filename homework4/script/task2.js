@@ -36,15 +36,18 @@
 //     },
 // };
 
-let basket_good = {
+const basket_good = {
     'id': 0,
     'name': "",
     'count': 0,
+    'unit': "",
     'price': 0,
+    'money_unit': "Rub",
 
-    'init': function (id, name, price) {
+    'init': function (id, name, unit, price) {
         this.id = id;
         this.name = name;
+        this.unit = unit;
         this.price = price;
     },
 
@@ -62,51 +65,56 @@ let basket_good = {
         }
     },
 
+    'calcTotal': function () {
+        const total = this.count * this.price
+        console.log(`${this.name}: ${this.price} * ${this.count}${this.unit} : \t ${total} ${this.money_unit}`);
+        return total;
+    }
+
 };
 
-function findGood(element, index, array) {
-    console.log(`${element.id} === ${good.id}`);
+function findGood(element, index, a_array, good) {
     if (element.id === good.id)
         return element;
 }
 
-let basket = {
+const basket = {
     goods_arr: [],
+    'money_unit': "Rub",
 
     'addGoodToBasket': function (good) {
-        let new_basket_good = basket_good;
-        let el_idx = this.goods_arr.findIndex(findGood);
+        const new_basket_good = Object.create(basket_good);
+        let el_idx = this.goods_arr.findIndex((e, i, arr) => findGood(e, i, arr, good));
         if (el_idx > -1) {
             this.goods_arr[el_idx].increaseCount();
-            console.log("increase");
+            // console.log("increase");
         } else {
-            console.log("add to cart");
-            new_basket_good.init(good.id, good.name, good.price);
+            // console.log("add to cart");
+            new_basket_good.init(good.id, good.name, good.unit, good.price);
             new_basket_good.increaseCount();
             this.goods_arr.push(new_basket_good);
         }
-
     },
 
     'delGoodFromBasket': function (id) {
-        let new_basket_good = basket_good;
-        let el_idx = this.goods_arr.findIndex(findGood);
+        let el_idx = this.goods_arr.findIndex((e, i, arr) => findGood(e, i, arr, good));
         if (el_idx > -1) {
-            console.log("decrease");
+            // console.log("decrease");
             this.goods_arr[el_idx].decreaseCount();
             if (this.goods_arr[el_idx].count == 0) {
                 delete this.goods_arr[el_idx];
-                console.log("delete from cart");
             }
         }
     },
 
     'calcSummOfgoods': function () {
-
+        let total = 0;
+        this.goods_arr.forEach(element => total += element.calcTotal());
+        console.log(`Итого: \t\t\t${total} ${this.money_unit}`);
     },
 }
 
-let good = {
+const good = {
     'id': 0,
     'name': "",
     'short_desc': "",
@@ -115,8 +123,9 @@ let good = {
     'small_img_url': "",
     'big_img_url': "",
     'price': 0,
+    'unit': "",
     'discount': 0,
-    'init': function (id, name, short_desc, long_desc, category_id, small_img_url, big_img_url, price, discount) {
+    'init': function (id, name, short_desc, long_desc, category_id, small_img_url, big_img_url, unit, price, discount) {
         this.id = id;
         this.name = name;
         this.short_desc = short_desc;
@@ -124,22 +133,36 @@ let good = {
         this.category_id = category_id;
         this.small_img_url = small_img_url;
         this.big_img_url = big_img_url;
+        this.unit = unit;
         this.price = price;
         this.discount = discount;
     },
 }
 
-let apple = good;
-apple.init(1, "Яблоки", "", "", 1, '/images/goods/apple_l.png', "", 10, 0);
+const apple = Object.create(good);
+apple.init(1, "Яблоки", "", "", 1, '/images/goods/apple_l.png', "", "кг.", 10, 0);
 
-let pear = good;
-pear.init(2, "Груши", "", "", 1, '/images/goods/pear_l.png', "", 11, 0);
+const pear = Object.create(good);
+pear.init(2, "Груши", "", "", 1, '/images/goods/pear_l.png', "", "кг.", 11, 0);
 
-let grape = good;
-grape.init(3, "Виноград", "", "", 1, '/images/goods/grape_l.png', "", 15, 0);
+const grape = Object.create(good);
+grape.init(3, "Виноград", "", "", 1, '/images/goods/grape_l.png', "", "кг.", 15, 0);
 
+
+basket.addGoodToBasket(grape);
 basket.addGoodToBasket(apple);
 basket.addGoodToBasket(pear);
-basket.addGoodToBasket(grape);
+basket.addGoodToBasket(apple);
+basket.addGoodToBasket(pear);
+basket.addGoodToBasket(pear);
+basket.delGoodFromBasket(pear);
 
-console.log(basket);
+
+basket.calcSummOfgoods();
+
+//console output
+// GB-js1/homework4/script$ node task2.js 
+// Виноград: 15 * 1кг. : 	 15 Rub
+// Яблоки: 10 * 2кг. : 	 20 Rub
+// Груши: 11 * 3кг. : 	 33 Rub
+// Итого: 			68 Rub
