@@ -1,14 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
 $maxPage-width: 1140px;
-$field-size : 90px;
+$field-size : 80px;
 $row-letter-with : 20px;
 $column-letter-height: 20px;
+$board-height : 680px;
+$board-width : 680px;
 
-$board-height : calc(#{field-size * 8+2*row-letter-height});
-$board-width : calc(#{field-size * 8+2*row-letter-width});
 
-$showborder: true;
+
+$showborder: false;
+
 $showBorder-width: 0px;
 $showBorder-style: none;
 $showBorder-color: black;
@@ -76,21 +78,20 @@ A:hover {
 
 .container {
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     margin: 0 auto;
     max-width: $maxPage-width;
     border-color: red;
 }
 
-.chessboard {
+.cart-container {
     padding-top: 48px;
     padding-bottom: 20px;
     margin-bottom: 7px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
 
-    .chessboard__header {
-        /* width: 100%; */
+    .cart-container__header {
+
         text-align: center;
         font-weight: 300;
         font-size: 36px;
@@ -102,59 +103,19 @@ A:hover {
         padding-bottom: 38px;
     }
 
-    .chessboard-field {
-        width: $board-width;
-        height: $board-height;
+    .cart-item {
+        border: 1px solid #000;
     }
-
-    .filed {
-        width: 90px;
-        height: 90px;
-
-        .field-row-playfield-dark {
-            background-color: #000000;
-        }
-
-        .field-row-playfield-light {
-            background-color: #ffffff;
-        }
-
-    }
-
-    .field-row {
-        flex-direction: row;
-        align-items: flex-start;
-        flex-wrap: wrap;
-    }
-
-    .border-row {
-        background-color: #000000;
-        color: #FFE8DE;
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-
-
-
-
-
-
-
-
 }
+
+
 
 
 .page-footer {
     background: #316099;
 
-    .footer-hr {
-        opacity: 0.4;
-        border: $footer_hrborder solid #ffffff;
-    }
-
-
     .footer-copyright {
-        width: 100%;
+        width: $maxPage-width;
         padding-bottom: 49px;
         padding-top: 49px;
         padding-left: 50px;
