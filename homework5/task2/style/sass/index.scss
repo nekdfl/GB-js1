@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+$maxPage-width: 1140px;
+$field-size : 80px;
+$row-letter-with : 20px;
+$column-letter-height: 20px;
+$board-height : 680px;
+$board-width : 680px;
+
+
+
+$showborder: false;
+
+$showBorder-width: 0px;
+$showBorder-style: none;
+$showBorder-color: black;
+
+@if $showborder {
+    $showBorder-width: 1px;
+    $showBorder-style: solid;
+    $showBorder-color: black;
+}
+
+.visibleborder {
+    border-width: $showBorder-width;
+    border-style: $showBorder-style;
+    border-color: $showBorder-color;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+A:link {
+    text-decoration: none;
+    /* Убирает подчеркивание для ссылок */
+    color: #5a98d0;
+}
+
+A:visited {
+    text-decoration: none;
+    color: #5a98d0;
+}
+
+A:active {
+    text-decoration: none;
+    color: #5a98d0;
+}
+
+A:hover {
+    text-decoration: none;
+    color: #5a98d0;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 100vh;
+
+    .page_font {
+        font-family: "Roboto", "Helvetica Neue", Verdana, Helvetica, Arial,
+            sans-serif;
+    }
+}
+
+.top-menu {
+    padding-top: 20px;
+    max-width: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    font-style: normal;
+    font-weight: bold;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: $maxPage-width;
+    border-color: red;
+}
+
+.chessboard-container {
+    padding-top: 48px;
+    padding-bottom: 20px;
+    margin-bottom: 7px;
+}
+
+.chessboard-container__header {
+
+    text-align: center;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 46px;
+    letter-spacing: 0.05em;
+    color: #000000;
+    padding-top: 21px;
+    padding-left: 32px;
+    padding-bottom: 38px;
+}
+
+.chessboard {
+    margin: auto;
+    border-collapse: collapse;
+    display: block;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+}
+
+tr {
+    width: 50px;
+    height: 50px;
+}
+
+td {
+    border: 1px solid #732e11;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
+
+
+
+
+.page-footer {
+    background: #316099;
+
+    .footer-copyright {
+        width: $maxPage-width;
+        padding-bottom: 49px;
+        padding-top: 49px;
+        padding-left: 50px;
+        font-size: 16px;
+        line-height: 26px;
+        letter-spacing: 0.05em;
+        color: #ffffff;
+        // opacity: 0.4;
+    }
+}
