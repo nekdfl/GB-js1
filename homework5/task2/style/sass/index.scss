@@ -85,28 +85,51 @@ A:hover {
     border-color: red;
 }
 
-.cart-container {
+.chessboard-container {
     padding-top: 48px;
     padding-bottom: 20px;
     margin-bottom: 7px;
-
-    .cart-container__header {
-
-        text-align: center;
-        font-weight: 300;
-        font-size: 36px;
-        line-height: 46px;
-        letter-spacing: 0.05em;
-        color: #000000;
-        padding-top: 21px;
-        padding-left: 32px;
-        padding-bottom: 38px;
-    }
-
-    .cart-item {
-        border: 1px solid #000;
-    }
 }
+
+.chessboard-container__header {
+
+    text-align: center;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 46px;
+    letter-spacing: 0.05em;
+    color: #000000;
+    padding-top: 21px;
+    padding-left: 32px;
+    padding-bottom: 38px;
+}
+
+.chessboard {
+    margin: auto;
+    border-collapse: collapse;
+    display: block;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+}
+
+tr {
+    width: 50px;
+    height: 50px;
+}
+
+td {
+    border: 1px solid #732e11;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
 
 
 
