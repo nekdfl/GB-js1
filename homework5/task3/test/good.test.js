@@ -2,34 +2,39 @@
  *
  */
 
-const goodsList = require("./fixture.js");
-const Good = require("../model/ModelGood.js");
-const assert = require("./assert.js");
+import goodsList from "../fixture/FixtureProducts.js";
+import Good from "../model/ModelGood.js";
+import assert from "./assert.js";
 
-const testGood = new Good(
-  goodsList[0].id,
-  goodsList[0].name,
-  goodsList[0].image,
-  goodsList[0].price,
-  goodsList[0].unit
-);
+let testGood;
+
+const beforeAssert = () => {
+  testGood = new Good(
+    goodsList[0].id,
+    goodsList[0].name,
+    goodsList[0].image,
+    goodsList[0].price,
+    goodsList[0].unit
+  );
+};
 
 const isIncrease = () => {
-  const previousQuantity = testGood.getQuantity();
+  const expectedQuantity = testGood.getQuantity();
   testGood.increaseQuantity(2);
-  return testGood.getQuantity() === previousQuantity + 2;
+  return testGood.getQuantity() === expectedQuantity + 2;
 };
 
 const isDecrease = () => {
-  const previousQuantity = testGood.getQuantity();
+  testGood.increaseQuantity(2);
+  const expectedQuantity = testGood.getQuantity();
   testGood.decreaseQuantity(2);
-  return testGood.getQuantity() === previousQuantity - 2;
+  return testGood.getQuantity() === expectedQuantity - 2;
 };
 
 const isNameSet = () => {
   return testGood.getName() === goodsList[0].name;
 };
 
-assert("increase good quantity", isIncrease);
-assert("decrease good quantity", isDecrease);
-assert("set good name", isNameSet);
+assert("increase good quantity", isIncrease, beforeAssert);
+assert("decrease good quantity", isDecrease, beforeAssert);
+assert("set good name", isNameSet, beforeAssert);

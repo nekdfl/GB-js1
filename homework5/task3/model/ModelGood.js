@@ -53,4 +53,4 @@ ModelGood.prototype.getSumm = function () {
   return this.price * this.quantity;
 };
 
-module.exports = ModelGood;
+export default ModelGood;

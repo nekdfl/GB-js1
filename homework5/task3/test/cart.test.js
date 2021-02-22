@@ -1,37 +1,37 @@
-/**
- *
- */
+import goodsList from "../fixture/FixtureProducts.js";
+import Good from "../model/ModelGood.js";
+import Cart from "../model/ModelCart.js";
+import assert from "./assert.js";
 
-const goodsList = require("./fixture.js");
-const Good = require("../model/ModelGood.js");
-const Cart = require("../model/ModelCart.js");
-const assert = require("./assert.js");
+let testGood1, testGood2, testGood3, cart;
 
-const testGood1 = new Good(
-  goodsList[0].id,
-  goodsList[0].name,
-  goodsList[0].image,
-  goodsList[0].price,
-  goodsList[0].unit
-);
+const beforeAssert = () => {
+  cart = new Cart();
 
-const testGood2 = new Good(
-  goodsList[1].id,
-  goodsList[1].name,
-  goodsList[1].image,
-  goodsList[1].price,
-  goodsList[1].unit
-);
+  testGood1 = new Good(
+    goodsList[0].id,
+    goodsList[0].name,
+    goodsList[0].image,
+    goodsList[0].price,
+    goodsList[0].unit
+  );
 
-const testGood3 = new Good(
-  goodsList[2].id,
-  goodsList[2].name,
-  goodsList[2].image,
-  goodsList[2].price,
-  goodsList[2].unit
-);
+  testGood2 = new Good(
+    goodsList[1].id,
+    goodsList[1].name,
+    goodsList[1].image,
+    goodsList[1].price,
+    goodsList[1].unit
+  );
 
-const cart = new Cart();
+  testGood3 = new Good(
+    goodsList[2].id,
+    goodsList[2].name,
+    goodsList[2].image,
+    goodsList[2].price,
+    goodsList[2].unit
+  );
+};
 
 const isCalcSummCartGoods = () => {
   cart.addGood(testGood1);
@@ -43,6 +43,18 @@ const isCalcSummCartGoods = () => {
   return cart.getSumm() === expectedSumm;
 };
 
-assert("summa of cart's goods", isCalcSummCartGoods);
-// assert("decrease good quantity", isDecrease);
-// assert("set good name", isNameSet);
+const isAddCartGoods = () => {
+  cart.addGood(testGood1);
+  return cart.getQuantityGood() === 1;
+};
+
+const isRemoveCartGoods = () => {
+  cart.addGood(testGood1);
+  cart.addGood(testGood2);
+  cart.removeGood(testGood1);
+  return cart.getQuantityGood() === 1;
+};
+
+assert("summa of cart's goods", isCalcSummCartGoods, beforeAssert);
+assert("add good to cart", isAddCartGoods, beforeAssert);
+assert("remove good from cart", isRemoveCartGoods, beforeAssert);

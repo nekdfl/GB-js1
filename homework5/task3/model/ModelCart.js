@@ -7,7 +7,7 @@ function ModelCart() {
 }
 
 ModelCart.prototype.getQuantityGood = function () {
-  return this.goods.length();
+  return this.goods.length;
 };
 
 ModelCart.prototype.findGood = function (good) {
@@ -37,18 +37,20 @@ ModelCart.prototype.removeGood = function (good) {
     return;
   }
 
-  const decreaseGoodQuantity = (currentGood) =>
-    currentGood.getId() === good.getId()
-      ? currentGood.decreaseQuantity(good.getQuantity())
-      : currentGood;
+  const decreaseGoodQuantity = (goods, currentGood) => {
+    if (Number(currentGood.getId()) !== Number(good.getId())) {
+      return [...goods, currentGood];
+    }
 
-  const deleteGood = () =>
-    this.goods.filter((currentGood) => currentGood.getId() !== good.getId());
+    if (good.getQuantity() >= currentGood.getQuantity()) {
+      return [...goods];
+    }
 
-  this.goods =
-    this.findGood(good).getQuantity() === 1
-      ? deleteGood()
-      : this.goods.map(decreaseGoodQuantity);
+    currentGood.decreaseQuantity(good.getQuantity());
+    return [...goods, currentGood];
+  };
+
+  this.goods = this.goods.reduce(decreaseGoodQuantity, []);
 };
 
 ModelCart.prototype.clear = function () {
@@ -59,4 +61,4 @@ ModelCart.prototype.getSumm = function () {
   return this.goods.reduce((summ, good) => summ + good.getSumm(), 0);
 };
 
-module.exports = ModelCart;
+export default ModelCart;
