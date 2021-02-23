@@ -87,12 +87,26 @@ ul {
     width: 100px;
 }
 
+.modal{
+    width: 65%;
+    border: 3px solid;
+    position: absolute;
+    top: 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
 .modal__container{
+    // display: flex;
     width: 100vw;
     background-color: #eeeeee87;
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
+    z-index: 2;
 
 }
+
+

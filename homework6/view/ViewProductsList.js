@@ -21,11 +21,11 @@ const createModalImagePreview = (goods) =>
     .join("");
 
 const createModalHtmlElement = (goods) =>
-  `<div id="modalContainer" class="modal__container hidden">
-      <div class="modal">
-      ${createModalImagePreview(goods)}
-      </div>
-    </div>`;
+  `<div id="modalContainer" class="modal__container hidden"></div>
+    <div id="modal" class="modal hidden">
+    ${createModalImagePreview(goods)}
+    </div>
+    `;
 
 const createProductsListHtmlElement = (goodsListHtml, goods) =>
   `<div class="products__container">
@@ -72,6 +72,7 @@ ViewProductList.prototype.createHandlers = function () {
   const imageNextButtons = document.querySelectorAll(".modal__img-next");
   const productImages = document.querySelectorAll(".product__img");
   const modalWindow = document.getElementById("modalContainer");
+  const modal = document.getElementById("modal");
 
   increaseButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -165,12 +166,16 @@ ViewProductList.prototype.createHandlers = function () {
   const hideModalWindow = () => {
     modalWindow.classList.remove("visible");
     modalWindow.classList.add("hidden");
+    modal.classList.remove("visible");
+    modal.classList.add("hidden");
     document.removeEventListener("keydown", (e) => {});
   };
 
   const showModalWindow = () => {
     modalWindow.classList.remove("hidden");
     modalWindow.classList.add("visible");
+    modal.classList.remove("hidden");
+    modal.classList.add("visible");
     document.addEventListener("keydown", (e) => {
       if (e.key == "Escape") {
         hideModalWindow();
