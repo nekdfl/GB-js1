@@ -1,0 +1,22 @@
+{
+  "name": "task3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node -r esm test/run.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/register": "^7.0.0"
+  },
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}
