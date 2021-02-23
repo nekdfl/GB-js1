@@ -1,13 +1,14 @@
 /**
  *  class ModelGood
  */
-function ModelGood(id, name, image, price, unit, quantity = 1) {
+function ModelGood(id, name, image, price, unit, quantity = 1, imageList = []) {
   this.id = id;
   this.name = name;
   this.image = image;
   this.price = price;
   this.unit = unit;
   this.quantity = quantity;
+  this.imageList = imageList;
 }
 
 ModelGood.prototype.getId = function () {
@@ -32,6 +33,10 @@ ModelGood.prototype.getUnit = function () {
 
 ModelGood.prototype.getQuantity = function () {
   return this.quantity;
+};
+
+ModelGood.prototype.getImageList = function () {
+  return this.imageList;
 };
 
 ModelGood.prototype.increaseQuantity = function (quantity) {

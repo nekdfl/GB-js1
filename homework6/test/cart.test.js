@@ -13,7 +13,9 @@ const beforeAssert = () => {
     goodsList[0].name,
     goodsList[0].image,
     goodsList[0].price,
-    goodsList[0].unit
+    goodsList[0].unit,
+    1,
+    goodsList[0].imageList
   );
 
   testGood2 = new Good(
@@ -21,7 +23,9 @@ const beforeAssert = () => {
     goodsList[1].name,
     goodsList[1].image,
     goodsList[1].price,
-    goodsList[1].unit
+    goodsList[1].unit,
+    1,
+    goodsList[1].imageList
   );
 
   testGood3 = new Good(
@@ -29,7 +33,9 @@ const beforeAssert = () => {
     goodsList[2].name,
     goodsList[2].image,
     goodsList[2].price,
-    goodsList[2].unit
+    goodsList[2].unit,
+    1,
+    goodsList[2].imageList
   );
 };
 

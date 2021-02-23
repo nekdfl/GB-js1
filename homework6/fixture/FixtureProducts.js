@@ -9,6 +9,7 @@ const products = [
     image: "apple.jpeg",
     price: 10,
     unit: "кг.",
+    imageList: ["apple.jpeg", "pear.jpeg", "grape.jpeg", "pear.jpeg"],
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const products = [
     image: "pear.jpeg",
     price: 11,
     unit: "кг.",
+    imageList: ["pear.jpeg", "pear.jpeg", "grape.jpeg", "pear.jpeg"],
   },
   {
     id: 3,
@@ -23,6 +25,7 @@ const products = [
     image: "grape.jpeg",
     price: 15,
     unit: "кг.",
+    imageList: ["grape.jpeg", "pear.jpeg", "grape.jpeg", "pear.jpeg"],
   },
 ];
 
