@@ -3,7 +3,7 @@ import Good from "../model/ModelGood.js";
 const createModalImageHtmlElemnt = (good) => {
   const isVisible = (i) => (i > 0 ? `hidden` : `visible`);
   const imgTag = (image, i) =>
-    `<img class="${isVisible(i)}" src="assets/img/${image}">`;
+    `<img class="modal-image ${isVisible(i)}" src="assets/img/${image}">`;
 
   return good.getImageList().map(imgTag).join("");
 };
@@ -21,7 +21,9 @@ const createModalImagePreview = (goods) =>
     .join("");
 
 const createModalHtmlElement = (goods) =>
-  `<div id="modalContainer" class="modal__container hidden"></div>
+  `<div id="modalContainer" class="modal__container hidden">
+      <div id="closeModal" class="modal__close">X</div>
+  </div>
     <div id="modal" class="modal hidden">
     ${createModalImagePreview(goods)}
     </div>
@@ -73,6 +75,7 @@ ViewProductList.prototype.createHandlers = function () {
   const productImages = document.querySelectorAll(".product__img");
   const modalWindow = document.getElementById("modalContainer");
   const modal = document.getElementById("modal");
+  const closeModalButton = document.getElementById("closeModal");
 
   increaseButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -199,11 +202,14 @@ ViewProductList.prototype.createHandlers = function () {
         el.classList.add("hidden");
       });
 
+      currentModalImagePreview.classList.remove("hidden");
       currentModalImagePreview.classList.add("visible");
 
       showModalWindow();
     });
   });
+
+  closeModalButton.addEventListener("click", hideModalWindow);
 
   modalWindow.addEventListener("click", (e) => {
     hideModalWindow();
